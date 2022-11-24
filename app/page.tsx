@@ -1,16 +1,16 @@
-import Layout from '../components/layout'
-import { getHomePage } from '../lib/getHomePage'
-// import { NotionRenderer } from 'react-notion-x'
+import { getHomePage } from "../lib/getHomePage";
+import { BlocksRenderer } from "../components/BlocksRenderer";
+
+export const revalidate = 1;
 
 export default async function Page() {
-  const blockMap = await getHomePage()
+  const blockMap = await getHomePage();
 
-  console.log(blockMap)
+  // console.log(blockMap.blocks.results);
 
   return (
-    <Layout>
-      {/* <NotionRenderer recordMap={blockMap} /> */}
-      <pre>{JSON.stringify(blockMap, null, 2)}</pre>
-    </Layout>
-  )
+    <>
+      <BlocksRenderer blocks={blockMap.blocks} />
+    </>
+  );
 }
