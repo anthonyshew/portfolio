@@ -1,12 +1,8 @@
-import { getHomePage } from "../lib/getHomePage";
-import { BlocksRenderer } from "../components/BlocksRenderer";
-
-export const revalidate = 1;
+import { getHomePage } from "../lib/notion/getHomePage";
+import { BlocksRenderer } from "@/components/BlocksRenderer";
 
 export default async function Page() {
   const blockMap = await getHomePage();
-
-  // console.log(blockMap.blocks.results);
 
   return (
     <>

@@ -1,7 +1,9 @@
 import { useId } from "react";
-import { notion } from "../lib/client";
+import { notion } from "../lib/notion/client";
 import { isFullBlock } from "@notionhq/client";
 import { Text } from "./blocks/Text";
+import { Todo } from "./blocks/Todo";
+import { Callout } from "./blocks/Callout";
 import Image from "next/image";
 
 type BlockList = Awaited<ReturnType<typeof notion.blocks.children.list>>;
@@ -23,6 +25,7 @@ export const BlocksRenderer = ({ blocks }: Props) => {
             <Image
               alt={block.image.caption.map((part) => part.plain_text).join()}
               src={block.image.external.url}
+              className="rounded"
               width="100"
               height="100"
               sizes="100vw"
@@ -39,6 +42,7 @@ export const BlocksRenderer = ({ blocks }: Props) => {
             <Image
               alt={block.image.caption.map((part) => part.plain_text).join()}
               src={block.image.file.url}
+              className="rounded"
               width="100"
               height="100"
               sizes="100vw"
@@ -122,6 +126,61 @@ export const BlocksRenderer = ({ blocks }: Props) => {
 
         if (block.type === "divider") {
           return <hr />;
+        }
+
+        if (block.type === "to_do") {
+          return <Todo />;
+        }
+
+        if (block.type === "callout") {
+          {
+            /* @ts-expect-error Server Component */
+          }
+          return <Callout block_id={block.id} />;
+        }
+
+        if (block.type === "bulleted_list_item") {
+          return (
+            <li>
+              {block.bulleted_list_item.rich_text.map((text) => {
+                return (
+                  <Text key={id} {...text.annotations}>
+                    {text.plain_text}
+                  </Text>
+                );
+              })}
+            </li>
+          );
+        }
+
+        if (block.type === "numbered_list_item") {
+          return (
+            <ol>
+              <li>
+                {block.numbered_list_item.rich_text.map((text) => {
+                  return (
+                    <Text key={id} {...text.annotations}>
+                      {text.plain_text}
+                    </Text>
+                  );
+                })}
+              </li>
+            </ol>
+          );
+        }
+
+        if (block.type === "toggle") {
+          return (
+            <details>
+              {block.toggle.rich_text.map((text) => {
+                return (
+                  <Text key={id} {...text.annotations}>
+                    {text.plain_text}
+                  </Text>
+                );
+              })}
+            </details>
+          );
         }
 
         return <pre>{block.type}</pre>;
