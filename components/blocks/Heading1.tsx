@@ -1,6 +1,6 @@
 import { cva, VariantProps } from "class-variance-authority";
 
-const textStyles = cva("text-base", {
+const textStyles = cva("cva-h1", {
   variants: {
     italic: {
       true: "italic",
@@ -14,9 +14,6 @@ const textStyles = cva("text-base", {
     strikethrough: {
       true: "line-through",
     },
-    code: {
-      true: "font-mono text-red-700 border",
-    },
   },
 });
 
@@ -24,18 +21,15 @@ export interface TextProps extends VariantProps<typeof textStyles> {
   children: string;
 }
 
-export const Text = ({
+export const Heading1 = ({
   bold,
   italic,
   strikethrough,
   underline,
-  code,
   children,
 }: TextProps) => {
   return (
-    <span
-      className={textStyles({ bold, italic, underline, strikethrough, code })}
-    >
+    <span className={textStyles({ bold, italic, underline, strikethrough })}>
       {children}
     </span>
   );

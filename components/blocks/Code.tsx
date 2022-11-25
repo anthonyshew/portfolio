@@ -1,6 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority";
+import { isFullBlock } from "@notionhq/client";
 
-const textStyles = cva("text-base", {
+const textStyles = cva("cva-p", {
   variants: {
     italic: {
       true: "italic",
@@ -14,29 +15,14 @@ const textStyles = cva("text-base", {
     strikethrough: {
       true: "line-through",
     },
-    code: {
-      true: "font-mono text-red-700 border",
-    },
   },
 });
 
 export interface TextProps extends VariantProps<typeof textStyles> {
   children: string;
+  block: any;
 }
 
-export const Text = ({
-  bold,
-  italic,
-  strikethrough,
-  underline,
-  code,
-  children,
-}: TextProps) => {
-  return (
-    <span
-      className={textStyles({ bold, italic, underline, strikethrough, code })}
-    >
-      {children}
-    </span>
-  );
+export const Code = ({ block }: TextProps) => {
+  console.log({ block });
 };
