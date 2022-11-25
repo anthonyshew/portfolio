@@ -4,6 +4,7 @@ import { isFullBlock } from "@notionhq/client";
 import { Text } from "./blocks/Text";
 import { Todo } from "./blocks/Todo";
 import { Callout } from "./blocks/Callout";
+import { Toggle } from "./blocks/Toggle";
 import Image from "next/image";
 
 type BlockList = Awaited<ReturnType<typeof notion.blocks.children.list>>;
@@ -133,9 +134,7 @@ export const BlocksRenderer = ({ blocks }: Props) => {
         }
 
         if (block.type === "callout") {
-          {
-            /* @ts-expect-error Server Component */
-          }
+          // @ts-expect-error Server Component */
           return <Callout block_id={block.id} />;
         }
 
@@ -170,16 +169,11 @@ export const BlocksRenderer = ({ blocks }: Props) => {
         }
 
         if (block.type === "toggle") {
+          console.log(block.toggle);
+
           return (
-            <details>
-              {block.toggle.rich_text.map((text) => {
-                return (
-                  <Text key={id} {...text.annotations}>
-                    {text.plain_text}
-                  </Text>
-                );
-              })}
-            </details>
+            // @ts-expect-error Server Component
+            <Toggle block_id={block.id} summary={block.toggle.rich_text} />
           );
         }
 
