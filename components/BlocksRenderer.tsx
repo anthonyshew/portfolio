@@ -96,7 +96,7 @@ export const BlocksRenderer = ({ blocks }: Props) => {
         }
 
         if (block.type === "to_do") {
-          return <Todo key={block.id} />;
+          return <Todo key={block.id} todoItem={block} />;
         }
 
         if (block.type === "callout") {
