@@ -1,4 +1,3 @@
-import { useId } from "react";
 import { notion } from "../lib/notion/client";
 import { isFullBlock } from "@notionhq/client";
 import { RichText, Todo, Callout, Toggle } from "./blocks";
@@ -11,8 +10,6 @@ interface Props {
 }
 
 export const BlocksRenderer = ({ blocks }: Props) => {
-  const id = useId();
-
   return (
     <article className="container mx-auto prose">
       {blocks.results.map((block) => {

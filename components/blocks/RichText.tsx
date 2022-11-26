@@ -1,6 +1,5 @@
 import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 import { cva } from "class-variance-authority";
-import { useId } from "react";
 
 const textStyles = cva("", {
   variants: {
@@ -27,11 +26,9 @@ export interface RichTextProps {
 }
 
 export const RichText = ({ rich_text }: RichTextProps) => {
-  const id = useId();
-
   return (
     <>
-      {rich_text.map((text) => {
+      {rich_text.map((text, index) => {
         const { href, annotations, plain_text } = text;
         const { bold, code, italic, underline, strikethrough } = annotations;
 
@@ -40,7 +37,7 @@ export const RichText = ({ rich_text }: RichTextProps) => {
 
           return (
             <a
-              key={id}
+              key={index}
               href={href}
               target={isExternal ? "_blank" : undefined}
               rel={isExternal ? "noopener noreferrer" : undefined}
@@ -59,7 +56,7 @@ export const RichText = ({ rich_text }: RichTextProps) => {
 
         return (
           <span
-            key={id}
+            key={index}
             className={textStyles({
               bold,
               italic,
