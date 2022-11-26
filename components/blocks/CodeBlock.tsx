@@ -24,5 +24,5 @@ export interface CodeProps extends VariantProps<typeof textStyles> {
 }
 
 export const Code = ({ block }: CodeProps) => {
-  console.log({ block });
+  console.log({ codeBlock: block });
 };

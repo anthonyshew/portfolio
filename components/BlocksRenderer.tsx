@@ -1,7 +1,22 @@
 import { notion } from "../lib/notion/client";
+import {
+  BlockObjectResponse,
+  BulletedListItemBlockObjectResponse,
+  NumberedListItemBlockObjectResponse,
+  PartialBlockObjectResponse,
+} from "@notionhq/client/build/src/api-endpoints";
 import { isFullBlock } from "@notionhq/client";
-import { RichText, Todo, Callout, Toggle, Video } from "./blocks";
+import {
+  RichText,
+  Todo,
+  Callout,
+  Toggle,
+  Video,
+  BulletedList,
+  OrderedList,
+} from "./blocks";
 import Image from "next/image";
+// import { handleListItems } from "@/lib/notion/handleListItems";
 
 type BlockList = Awaited<ReturnType<typeof notion.blocks.children.list>>;
 
@@ -10,9 +25,34 @@ interface Props {
 }
 
 export const BlocksRenderer = ({ blocks }: Props) => {
+  const blocksArr = blocks.results.reduce((acc, value) => {
+    if (!acc.length && value.type === "bulleted_list_item") {
+      acc.push([value]);
+      return acc;
+    }
+
+    if (
+      acc[acc.length - 1][0].type === "bulleted_list_item" &&
+      value.type === "bulleted_list_item"
+    ) {
+      acc[acc.length - 1].push(value);
+      return acc;
+    }
+
+    acc.push(value);
+    console.log(acc);
+    return acc as Array<BlockObjectResponse | BlockObjectResponse[]>;
+  }, []);
+
+  console.log(blocksArr);
+
   return (
     <article className="container mx-auto prose">
-      {blocks.results.map((block) => {
+      {blocksArr.map((block) => {
+        if (Array.isArray(block)) {
+          return <p>an array was found.</p>;
+        }
+
         if (!isFullBlock(block)) return null;
 
         if (block.type === "image" && block.image.type === "external") {
@@ -104,26 +144,15 @@ export const BlocksRenderer = ({ blocks }: Props) => {
           return <Callout key={block.id} block_id={block.id} />;
         }
 
-        if (block.type === "bulleted_list_item") {
-          return (
-            <li key={block.id}>
-              <RichText
-                key={block.id}
-                rich_text={block.bulleted_list_item.rich_text}
-              />
-            </li>
-          );
-        }
+        // if (block.type === "bulleted_list_item") {
+        //   // @ts-expect-error Server Component */
+        //   return <BulletedList listItems={listItems} />;
+        // }
 
-        if (block.type === "numbered_list_item") {
-          return (
-            <ol key={block.id}>
-              <li>
-                <RichText rich_text={block.numbered_list_item.rich_text} />
-              </li>
-            </ol>
-          );
-        }
+        // if (block.type === "numbered_list_item") {
+        //   // @ts-expect-error Server Component */
+        //   return <OrderedList listItems={listItems} />;
+        // }
 
         if (block.type === "toggle") {
           return (
