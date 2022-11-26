@@ -26,12 +26,15 @@ interface Props {
 
 export const BlocksRenderer = ({ blocks }: Props) => {
   const blocksArr = blocks.results.reduce((acc, value) => {
+    if (!isFullBlock(value)) return acc;
+
     if (!acc.length && value.type === "bulleted_list_item") {
       acc.push([value]);
       return acc;
     }
 
     if (
+      acc[acc.length - 1][0] &&
       acc[acc.length - 1][0].type === "bulleted_list_item" &&
       value.type === "bulleted_list_item"
     ) {
@@ -40,7 +43,6 @@ export const BlocksRenderer = ({ blocks }: Props) => {
     }
 
     acc.push(value);
-    console.log(acc);
     return acc as Array<BlockObjectResponse | BlockObjectResponse[]>;
   }, []);
 
@@ -49,10 +51,6 @@ export const BlocksRenderer = ({ blocks }: Props) => {
   return (
     <article className="container mx-auto prose">
       {blocksArr.map((block) => {
-        if (Array.isArray(block)) {
-          return <p>an array was found.</p>;
-        }
-
         if (!isFullBlock(block)) return null;
 
         if (block.type === "image" && block.image.type === "external") {
