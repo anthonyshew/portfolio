@@ -1,7 +1,7 @@
 import { useId } from "react";
 import { notion } from "../lib/notion/client";
 import { isFullBlock } from "@notionhq/client";
-import { Text } from "./blocks/Text";
+import { RichText } from "./blocks/RichText";
 import { Todo } from "./blocks/Todo";
 import { Callout } from "./blocks/Callout";
 import { Toggle } from "./blocks/Toggle";
@@ -24,6 +24,7 @@ export const BlocksRenderer = ({ blocks }: Props) => {
         if (block.type === "image" && block.image.type === "external") {
           return (
             <Image
+              key={block.id}
               alt={block.image.caption.map((part) => part.plain_text).join()}
               src={block.image.external.url}
               className="rounded"
@@ -41,6 +42,7 @@ export const BlocksRenderer = ({ blocks }: Props) => {
         if (block.type === "image" && block.image.type == "file") {
           return (
             <Image
+              key={block.id}
               alt={block.image.caption.map((part) => part.plain_text).join()}
               src={block.image.file.url}
               className="rounded"
@@ -57,127 +59,90 @@ export const BlocksRenderer = ({ blocks }: Props) => {
 
         if (block.type === "paragraph") {
           return (
-            <p>
-              {block.paragraph.rich_text.map((text) => {
-                return (
-                  <Text key={id} {...text.annotations} href={text.href}>
-                    {text.plain_text}
-                  </Text>
-                );
-              })}
+            <p key={block.id}>
+              <RichText rich_text={block.paragraph.rich_text} />
             </p>
           );
         }
 
         if (block.type === "heading_1") {
           return (
-            <h1>
-              {block.heading_1.rich_text.map((text) => {
-                return (
-                  <Text key={id} {...text.annotations}>
-                    {text.plain_text}
-                  </Text>
-                );
-              })}
+            <h1 key={block.id}>
+              <RichText rich_text={block.heading_1.rich_text} />
             </h1>
           );
         }
 
         if (block.type === "heading_2") {
           return (
-            <h2>
-              {block.heading_2.rich_text.map((text) => {
-                return (
-                  <Text key={id} {...text.annotations}>
-                    {text.plain_text}
-                  </Text>
-                );
-              })}
+            <h2 key={block.id}>
+              <RichText rich_text={block.heading_2.rich_text} />
             </h2>
           );
         }
 
         if (block.type === "heading_3") {
           return (
-            <h3>
-              {block.heading_3.rich_text.map((text) => {
-                return (
-                  <Text key={id} {...text.annotations}>
-                    {text.plain_text}
-                  </Text>
-                );
-              })}
+            <h3 key={block.id}>
+              <RichText rich_text={block.heading_3.rich_text} />
             </h3>
           );
         }
 
         if (block.type === "quote") {
           return (
-            <blockquote>
-              {block.quote.rich_text.map((text) => {
-                return (
-                  <Text key={id} {...text.annotations}>
-                    {text.plain_text}
-                  </Text>
-                );
-              })}
+            <blockquote key={block.id}>
+              <RichText rich_text={block.quote.rich_text} />
             </blockquote>
           );
         }
 
         if (block.type === "divider") {
-          return <hr />;
+          return <hr key={block.id} />;
         }
 
         if (block.type === "to_do") {
-          return <Todo />;
+          return <Todo key={block.id} />;
         }
 
         if (block.type === "callout") {
           // @ts-expect-error Server Component */
-          return <Callout block_id={block.id} />;
+          return <Callout key={block.id} block_id={block.id} />;
         }
 
         if (block.type === "bulleted_list_item") {
           return (
-            <li>
-              {block.bulleted_list_item.rich_text.map((text) => {
-                return (
-                  <Text key={id} {...text.annotations}>
-                    {text.plain_text}
-                  </Text>
-                );
-              })}
+            <li key={block.id}>
+              <RichText
+                key={block.id}
+                rich_text={block.bulleted_list_item.rich_text}
+              />
             </li>
           );
         }
 
         if (block.type === "numbered_list_item") {
           return (
-            <ol>
+            <ol key={block.id}>
               <li>
-                {block.numbered_list_item.rich_text.map((text) => {
-                  return (
-                    <Text key={id} {...text.annotations}>
-                      {text.plain_text}
-                    </Text>
-                  );
-                })}
+                <RichText rich_text={block.numbered_list_item.rich_text} />
               </li>
             </ol>
           );
         }
 
         if (block.type === "toggle") {
-          console.log(block.toggle);
-
           return (
             // @ts-expect-error Server Component
-            <Toggle block_id={block.id} summary={block.toggle.rich_text} />
+            <Toggle
+              key={block.id}
+              block_id={block.id}
+              summary={block.toggle.rich_text}
+            />
           );
         }
 
-        return <pre>{block.type}</pre>;
+        return <pre key={block.id}>{block.type}</pre>;
       })}
     </article>
   );

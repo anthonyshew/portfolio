@@ -1,7 +1,7 @@
 import { useId } from "react";
 import { notion } from "@/lib/notion/client";
 import { isFullBlock } from "@notionhq/client";
-import { Text } from "@/components/blocks/Text";
+import { RichText } from "@/components/blocks/RichText";
 
 interface Props {
   block_id: string;
@@ -17,13 +17,7 @@ export const Callout = async ({ block_id }: Props) => {
   if (isFullBlock(blocks) && blocks.type === "callout") {
     return (
       <div className="p-4 rounded bg-slate-400">
-        {blocks.callout.rich_text.map((text) => {
-          return (
-            <Text key={id} {...text.annotations}>
-              {text.plain_text}
-            </Text>
-          );
-        })}
+        <RichText rich_text={blocks.callout.rich_text} />
       </div>
     );
   }

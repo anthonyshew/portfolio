@@ -1,7 +1,6 @@
 import { useId } from "react";
 import { notion } from "@/lib/notion/client";
-import { isFullBlock } from "@notionhq/client";
-import { Text } from "@/components/blocks/Text";
+import { RichText } from "@/components/blocks/RichText";
 import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
 import { BlocksRenderer } from "@/components/BlocksRenderer";
 
@@ -11,8 +10,6 @@ interface Props {
 }
 
 export const Toggle = async ({ block_id, summary }: Props) => {
-  const id = useId();
-
   const blocks = await notion.blocks.children.list({
     block_id,
   });
@@ -20,15 +17,8 @@ export const Toggle = async ({ block_id, summary }: Props) => {
   return (
     <details className="p-4 rounded bg-slate-400">
       <summary>
-        {summary.map((text) => {
-          return (
-            <Text key={id} {...text.annotations}>
-              {text.plain_text}
-            </Text>
-          );
-        })}
+        <RichText rich_text={summary} />
       </summary>
-
       <BlocksRenderer blocks={blocks} />
     </details>
   );
