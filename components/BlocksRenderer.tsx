@@ -1,6 +1,6 @@
 import { notion } from "../lib/notion/client";
 import { isFullBlock } from "@notionhq/client";
-import { RichText, Todo, Callout, Toggle } from "./blocks";
+import { RichText, Todo, Callout, Toggle, Video } from "./blocks";
 import Image from "next/image";
 
 type BlockList = Awaited<ReturnType<typeof notion.blocks.children.list>>;
@@ -134,6 +134,10 @@ export const BlocksRenderer = ({ blocks }: Props) => {
               summary={block.toggle.rich_text}
             />
           );
+        }
+
+        if (block.type === "video") {
+          return <Video key={block.id} videoBlock={block} />;
         }
 
         return <pre key={block.id}>{block.type}</pre>;

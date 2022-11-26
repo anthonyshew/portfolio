@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.youtube-iframe {
+  aspect-ratio: 16/9;
+  width: 100%;
+}
