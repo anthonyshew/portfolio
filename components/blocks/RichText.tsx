@@ -22,11 +22,11 @@ const textStyles = cva("", {
   },
 });
 
-export interface TextProps {
+export interface RichTextProps {
   rich_text: RichTextItemResponse[];
 }
 
-export const RichText = ({ rich_text }: TextProps) => {
+export const RichText = ({ rich_text }: RichTextProps) => {
   const id = useId();
 
   return (

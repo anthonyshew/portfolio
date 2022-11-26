@@ -1,10 +1,7 @@
 import { useId } from "react";
 import { notion } from "../lib/notion/client";
 import { isFullBlock } from "@notionhq/client";
-import { RichText } from "./blocks/RichText";
-import { Todo } from "./blocks/Todo";
-import { Callout } from "./blocks/Callout";
-import { Toggle } from "./blocks/Toggle";
+import { RichText, Todo, Callout, Toggle } from "./blocks";
 import Image from "next/image";
 
 type BlockList = Awaited<ReturnType<typeof notion.blocks.children.list>>;

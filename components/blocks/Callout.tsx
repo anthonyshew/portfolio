@@ -1,4 +1,3 @@
-import { useId } from "react";
 import { notion } from "@/lib/notion/client";
 import { isFullBlock } from "@notionhq/client";
 import { RichText } from "@/components/blocks/RichText";
@@ -8,8 +7,6 @@ interface Props {
 }
 
 export const Callout = async ({ block_id }: Props) => {
-  const id = useId();
-
   const blocks = await notion.blocks.retrieve({
     block_id,
   });

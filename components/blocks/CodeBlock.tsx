@@ -18,11 +18,11 @@ const textStyles = cva("cva-p", {
   },
 });
 
-export interface TextProps extends VariantProps<typeof textStyles> {
+export interface CodeProps extends VariantProps<typeof textStyles> {
   children: string;
   block: any;
 }
 
-export const Code = ({ block }: TextProps) => {
+export const Code = ({ block }: CodeProps) => {
   console.log({ block });
 };
