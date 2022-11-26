@@ -10,7 +10,7 @@ export const BulletedList = async ({ listItems }: Props) => {
     <ul>
       {listItems.map((item) => {
         return (
-          <li>
+          <li key={item.id}>
             <RichText rich_text={item.bulleted_list_item.rich_text} />
           </li>
         );

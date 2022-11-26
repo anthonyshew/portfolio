@@ -10,7 +10,7 @@ export const OrderedList = async ({ listItems }: Props) => {
     <ol>
       {listItems.map((item) => {
         return (
-          <li>
+          <li key={item.id}>
             <RichText rich_text={item.numbered_list_item.rich_text} />
           </li>
         );

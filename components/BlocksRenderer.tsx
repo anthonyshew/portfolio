@@ -1,9 +1,6 @@
-import { notion } from "../lib/notion/client";
 import {
   BlockObjectResponse,
-  BulletedListItemBlockObjectResponse,
-  NumberedListItemBlockObjectResponse,
-  PartialBlockObjectResponse,
+  ListBlockChildrenResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import { isFullBlock } from "@notionhq/client";
 import {
@@ -16,16 +13,15 @@ import {
   OrderedList,
 } from "./blocks";
 import Image from "next/image";
-// import { handleListItems } from "@/lib/notion/handleListItems";
-
-type BlockList = Awaited<ReturnType<typeof notion.blocks.children.list>>;
 
 interface Props {
-  blocks: BlockList;
+  blocks: ListBlockChildrenResponse;
 }
 
 export const BlocksRenderer = ({ blocks }: Props) => {
-  const blocksArr = blocks.results.reduce((acc, value) => {
+  const blocksArr = blocks.results.reduce<
+    Array<BlockObjectResponse | BlockObjectResponse[]>
+  >((acc, value) => {
     if (!isFullBlock(value)) return acc;
 
     if (!acc.length && value.type === "bulleted_list_item") {
@@ -38,19 +34,27 @@ export const BlocksRenderer = ({ blocks }: Props) => {
       acc[acc.length - 1][0].type === "bulleted_list_item" &&
       value.type === "bulleted_list_item"
     ) {
-      acc[acc.length - 1].push(value);
+      (acc[acc.length - 1] as BlockObjectResponse[]).push(value);
       return acc;
     }
 
     acc.push(value);
-    return acc as Array<BlockObjectResponse | BlockObjectResponse[]>;
+    return acc;
   }, []);
-
-  console.log(blocksArr);
 
   return (
     <article className="container mx-auto prose">
       {blocksArr.map((block) => {
+        if (Array.isArray(block)) {
+          return block[0].type === "bulleted_list_item" ? (
+            // @ts-expect-error Server Component */
+            <BulletedList key={block[0].id} listItems={block} />
+          ) : (
+            // @ts-expect-error Server Component */
+            <OrderedList key={block[0].id} listItems={block} />
+          );
+        }
+
         if (!isFullBlock(block)) return null;
 
         if (block.type === "image" && block.image.type === "external") {
@@ -141,16 +145,6 @@ export const BlocksRenderer = ({ blocks }: Props) => {
           // @ts-expect-error Server Component */
           return <Callout key={block.id} block_id={block.id} />;
         }
-
-        // if (block.type === "bulleted_list_item") {
-        //   // @ts-expect-error Server Component */
-        //   return <BulletedList listItems={listItems} />;
-        // }
-
-        // if (block.type === "numbered_list_item") {
-        //   // @ts-expect-error Server Component */
-        //   return <OrderedList listItems={listItems} />;
-        // }
 
         if (block.type === "toggle") {
           return (
