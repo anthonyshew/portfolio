@@ -58,7 +58,7 @@ export const Navbar = ({ desktopLinks, mobileLinks }: Props) => {
             } w-full absolute left-0 top-18 md:relative md:block md:top-0 md:w-auto`}
             id="navbar-dropdown"
           >
-            <ul className="flex flex-col p-4 mt-4 border-gray-100 rounded-b-xl md:rounded-br-none md:rounded-bl-none bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul className="flex flex-col p-4 mt-4 mx-2 border-gray-100 rounded-b-xl md:rounded-br-none md:rounded-bl-none bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               {mobileLinks.map((link) => {
                 return (
                   <li
