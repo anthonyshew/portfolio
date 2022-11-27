@@ -1,9 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isMobileOpen]);
 
   return (
     <nav className="fixed w-full p-4 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
@@ -52,7 +60,7 @@ export const Navbar = () => {
             } w-full absolute left-0 top-14 md:relative md:block md:top-0 md:w-auto`}
             id="navbar-dropdown"
           >
-            <ul className="flex flex-col p-4 mt-4 border-gray-100 rounded-b-xl md:rounded-br-none md:rounded-bl-none bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul className="flex flex-col p-4 mt-4 mx-2 border-gray-100 rounded-b-xl md:rounded-br-none md:rounded-bl-none bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
                 <a
                   href="#"

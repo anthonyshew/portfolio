@@ -20,10 +20,7 @@ export default async function RootLayout({
       </head>
       <body>
         <Navbar />
-        <div>
-          <pre>{JSON.stringify(desktop, null, 2)}</pre>
-        </div>
-        <main className="pt-16">{children}</main>
+        <main className="pt-16 md:pt-20">{children}</main>
       </body>
     </html>
   );
