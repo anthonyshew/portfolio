@@ -2,6 +2,7 @@ import "./globals.css";
 
 import { getNavigation } from "@/lib/notion";
 import { Navbar } from "@/components/Navbar";
+import { AnalyticsWrapper } from "@/components/AnalyticsWrapper";
 import { Inter } from "@next/font/google";
 
 const inter = Inter({
@@ -25,6 +26,7 @@ export default async function RootLayout({
       <body>
         <Navbar headerLinks={header} />
         <main className="pt-24 min-h-screen dark:bg-black">{children}</main>
+        <AnalyticsWrapper />
       </body>
     </html>
   );

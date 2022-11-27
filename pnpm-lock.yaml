@@ -6,6 +6,7 @@ specifiers:
   '@tailwindcss/forms': ^0.5.3
   '@tailwindcss/typography': ^0.5.8
   '@types/react': 18.0.25
+  '@vercel/analytics': ^0.1.5
   autoprefixer: ^10.4.13
   class-variance-authority: ^0.3.0
   classnames: ^2.3.2
@@ -21,6 +22,7 @@ specifiers:
 dependencies:
   '@next/font': 13.0.5
   '@notionhq/client': 2.2.2_encoding@0.1.13
+  '@vercel/analytics': 0.1.5_react@18.2.0
   autoprefixer: 10.4.13_postcss@8.4.19
   class-variance-authority: 0.3.0_typescript@4.9.3
   classnames: 2.3.2
@@ -246,6 +248,14 @@ packages:
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
     dev: true
+
+  /@vercel/analytics/0.1.5_react@18.2.0:
+    resolution: {integrity: sha512-/k9N8Ea3Yc5A52GlkjzUEbi2vE/izClrOf++ryBkxEfrZM/OZwtHkdNw/QExZ1h/B67RCZLK7bCOnKKrhG7gTg==}
+    peerDependencies:
+      react: ^16.8||^17||^18
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /acorn-node/1.8.2:
     resolution: {integrity: sha512-8mt+fslDufLYntIoPAaIMUe/lrbrehIiwmR3t2k9LljIzoigEPF27eLk2hy8zSGzmR/ogr7zbRKINMo1u0yh5A==}
