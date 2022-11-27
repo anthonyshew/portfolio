@@ -1,5 +1,4 @@
 import { cva, VariantProps } from "class-variance-authority";
-import { isFullBlock } from "@notionhq/client";
 
 const textStyles = cva("cva-p", {
   variants: {
