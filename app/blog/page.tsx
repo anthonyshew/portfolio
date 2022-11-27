@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const revalidate = 1;
 
-export default async function Page({ params }) {
+export default async function Page() {
   const posts = await getAllPosts();
 
   return (

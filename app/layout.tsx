@@ -20,9 +20,6 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={inter.className}>
-      <head>
-        <title>TODO</title>
-      </head>
       <body>
         <Navbar headerLinks={header} />
         <main className="pt-24 min-h-screen dark:bg-black">{children}</main>
