@@ -4,7 +4,7 @@ export interface NavProperties {
   Status: StatusPropertyItemObjectResponse & {
     name: "Not started" | "In progress" | "Ready to post" | "Done"
   },
-  Navigation: MultiSelectPropertyItemObjectResponse,
+  Placement: MultiSelectPropertyItemObjectResponse,
   Slug: TextRichTextItemResponse,
   Title: TextRichTextItemResponse
 }

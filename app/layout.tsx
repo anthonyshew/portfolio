@@ -10,7 +10,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const { pageTitle } = await getHomePage();
-  const navList = await getNavigation();
+  const { desktop } = await getNavigation();
 
   return (
     <html>
@@ -20,13 +20,7 @@ export default async function RootLayout({
       <body>
         <nav></nav>
         <div>
-          <pre>
-            {JSON.stringify(
-              navList.map((stuff) => stuff.properties.Navigation),
-              null,
-              2
-            )}
-          </pre>
+          <pre>{JSON.stringify(desktop, null, 2)}</pre>
         </div>
         <main>{children}</main>
       </body>
