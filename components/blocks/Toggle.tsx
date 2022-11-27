@@ -1,7 +1,7 @@
 import { notion } from "@/lib/notion/client";
 import { RichText } from "@/components/blocks/RichText";
 import { RichTextItemResponse } from "@notionhq/client/build/src/api-endpoints";
-import { BlocksRenderer } from "@/components/BlocksRenderer";
+import { BlocksRenderer } from "@/components/blocks/BlocksRenderer";
 
 interface Props {
   block_id: string;

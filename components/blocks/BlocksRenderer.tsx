@@ -12,7 +12,7 @@ import {
   BulletedList,
   OrderedList,
   BlogImage,
-} from "./blocks";
+} from ".";
 
 interface Props {
   blocks: ListBlockChildrenResponse;

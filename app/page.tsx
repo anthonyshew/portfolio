@@ -1,5 +1,5 @@
 import { getHomePage } from "../lib/notion/getHomePage";
-import { BlocksRenderer } from "@/components/BlocksRenderer";
+import { BlocksRenderer } from "@/components/blocks/BlocksRenderer";
 
 export const revalidate = 1;
 
