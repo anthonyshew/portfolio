@@ -1,7 +1,7 @@
 import { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import Image from "next/image";
 
-export const BlogImage = ({ block }: { block: BlockObjectResponse }) => {
+export const CmsImage = ({ block }: { block: BlockObjectResponse }) => {
   if (block.type === "image" && block.image.type === "external") {
     return (
       <Image

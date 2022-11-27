@@ -11,7 +11,7 @@ import {
   Video,
   BulletedList,
   OrderedList,
-  BlogImage,
+  CmsImage,
 } from ".";
 
 interface Props {
@@ -55,6 +55,14 @@ export const BlocksRenderer = ({ blocks }: Props) => {
       return acc;
     }
 
+    if (
+      value.type === "bulleted_list_item" ||
+      value.type === "numbered_list_item"
+    ) {
+      acc.push([value]);
+      return acc;
+    }
+
     acc.push(value);
     return acc;
   }, []);
@@ -74,8 +82,8 @@ export const BlocksRenderer = ({ blocks }: Props) => {
 
         if (!isFullBlock(block)) return null;
 
-        if (block.type === "image" && block.image.type === "external") {
-          return <BlogImage block={block} />;
+        if (block.type === "image") {
+          return <CmsImage key={block.id} block={block} />;
         }
 
         if (block.type === "paragraph") {

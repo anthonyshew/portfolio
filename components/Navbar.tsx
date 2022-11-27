@@ -14,18 +14,6 @@ export const Navbar = ({ headerLinks }: Props) => {
   return (
     <nav className="fixed w-full p-4 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
-        <a href="/" className="h-16 relative flex items-center gap-4">
-          <span className="block relative w-16 h-16">
-            <Image
-              src="https://avatars.githubusercontent.com/u/35677084?v=4"
-              className="rounded-full"
-              alt="Anthony Shew"
-              sizes="64px"
-              fill
-            />
-          </span>
-          <p className="text-white">Anthony Shew</p>
-        </a>
         <button
           data-collapse-toggle="navbar-dropdown"
           type="button"
@@ -81,6 +69,18 @@ export const Navbar = ({ headerLinks }: Props) => {
             </ul>
           </div>
         </div>
+        <a href="/" className="h-16 relative flex items-center gap-4">
+          <span className="block relative w-16 h-16">
+            <Image
+              src="https://avatars.githubusercontent.com/u/35677084?v=4"
+              className="rounded-full"
+              alt="Anthony Shew"
+              sizes="64px"
+              fill
+            />
+          </span>
+          <p className="text-white">Anthony Shew</p>
+        </a>
       </div>
     </nav>
   );
