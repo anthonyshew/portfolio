@@ -13,7 +13,10 @@ export const Callout = async ({ block_id }: Props) => {
 
   if (isFullBlock(blocks) && blocks.type === "callout") {
     return (
-      <div className="p-4 rounded bg-slate-400">
+      <div className="relative p-6 rounded bg-slate-400">
+        <span className="absolute -top-3 -left-3 text-4xl">
+          {(blocks.callout.icon as { type: string; emoji: string }).emoji}
+        </span>
         <RichText rich_text={blocks.callout.rich_text} />
       </div>
     );

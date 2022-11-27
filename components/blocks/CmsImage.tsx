@@ -8,7 +8,7 @@ export const CmsImage = ({ block }: { block: BlockObjectResponse }) => {
         key={block.id}
         alt={block.image.caption.map((part) => part.plain_text).join()}
         src={block.image.external.url}
-        className="rounded"
+        className="rounded-md"
         width="100"
         height="100"
         sizes="100vw"
@@ -26,7 +26,7 @@ export const CmsImage = ({ block }: { block: BlockObjectResponse }) => {
         key={block.id}
         alt={block.image.caption.map((part) => part.plain_text).join()}
         src={block.image.file.url}
-        className="rounded"
+        className="rounded-md"
         width="100"
         height="100"
         sizes="100vw"

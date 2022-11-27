@@ -12,7 +12,7 @@ export const Navbar = ({ headerLinks }: Props) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed w-full p-4 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+    <nav className="fixed z-50 w-full p-4 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <button
           data-collapse-toggle="navbar-dropdown"
