@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import { getHomePage, getNavigation } from "@/lib/notion";
+import { Navbar } from "@/components/Navbar";
 
 export const revalidate = 10;
 
@@ -18,7 +19,7 @@ export default async function RootLayout({
         <title>{pageTitle}</title>
       </head>
       <body>
-        <nav></nav>
+        <Navbar />
         <div>
           <pre>{JSON.stringify(desktop, null, 2)}</pre>
         </div>
