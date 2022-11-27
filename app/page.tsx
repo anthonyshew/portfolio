@@ -1,10 +1,10 @@
-import { getHomePage } from "../lib/notion/getHomePage";
+import { getLanding } from "../lib/notion";
 import { BlocksRenderer } from "@/components/blocks/BlocksRenderer";
 
 export const revalidate = 1;
 
 export default async function Page() {
-  const blockMap = await getHomePage();
+  const blockMap = await getLanding("home");
 
   return (
     <>

@@ -20,10 +20,6 @@ export default async function Page({ params }) {
           </Link>
         );
       })}
-      {/* {posts.map((post) => {
-        return <pre>{JSON.stringify(post, null, 2)}</pre>;
-      })} */}
-      {/* <pre>{JSON.stringify(posts, null, 2)}</pre> */}
     </>
   );
 }

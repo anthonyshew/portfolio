@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import { getHomePage, getNavigation } from "@/lib/notion";
+import { getNavigation } from "@/lib/notion";
 import { Navbar } from "@/components/Navbar";
 import { Inter } from "@next/font/google";
 
@@ -14,13 +14,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { pageTitle } = await getHomePage();
   const { header, footer } = await getNavigation();
 
   return (
     <html lang="en" className={inter.className}>
       <head>
-        <title>{pageTitle}</title>
+        <title>TODO</title>
       </head>
       <body>
         <Navbar headerLinks={header} />

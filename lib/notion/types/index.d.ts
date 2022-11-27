@@ -20,7 +20,7 @@ export interface BlogPostProperties {
     name: "Not started" | "In progress" | "Ready to post" | "Done"
   },
   Date: Omit<DatePropertyItemObjectResponse, "object">,
-  LastUpdated: { id: string, type: string, last_edited_time: Date },
+  LastUpdated: { id: string, type: string, last_edited_time: Date }
   YtVidStatus: StatusPropertyItemObjectResponse & {
     name: "Not started" | "Recording" | "Editing" | "Done" | "Nah"
   },
@@ -31,6 +31,21 @@ export interface BlogPostProperties {
 
 export type BlogDatabaseResult = Array<
   PageObjectResponse & {
-    properties: BlogPostProperties;
+    properties: BlogPostProperties
+  }
+>;
+
+export interface LandingsProperties {
+  Status: StatusPropertyItemObjectResponse & {
+    name: "Not started" | "In progress" | "Ready to post" | "Done"
+  }
+  Placement: MultiSelectPropertyItemObjectResponse
+  Title: { title: TextRichTextItemResponse[0] }
+  Slug: { rich_text: TextRichTextItemResponse[] }
+}
+
+export type LandingsDatabaseResult = Array<
+  PageObjectResponse & {
+    properties: LandingsProperties;
   }
 >;
