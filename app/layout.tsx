@@ -15,7 +15,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { header, footer } = await getNavigation();
+  const { header } = await getNavigation();
 
   return (
     <html lang="en" className={inter.className}>
@@ -24,7 +24,7 @@ export default async function RootLayout({
       </head>
       <body>
         <Navbar headerLinks={header} />
-        <main className="pt-24 min-h-screen">{children}</main>
+        <main className="pt-24 min-h-screen dark:bg-black">{children}</main>
       </body>
     </html>
   );
