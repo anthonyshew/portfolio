@@ -23,7 +23,7 @@ export default async function RootLayout({
         <div>
           <pre>{JSON.stringify(desktop, null, 2)}</pre>
         </div>
-        <main>{children}</main>
+        <main className="pt-16">{children}</main>
       </body>
     </html>
   );
