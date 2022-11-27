@@ -11,13 +11,14 @@ const handlePlacement = (
       page.properties.Placement.multi_select.filter(
         (place) => place.name === placement
       )
-  );
+  )
 };
 
 export const getNavigation = async () => {
   const database = await notion.databases.query({
     database_id: process.env.NEXT_PUBLIC_NAV_DB_ID,
-    sorts: [{ property: "Slug", direction: "ascending" }],
+    filter: { property: "Status", status: { equals: "Posted" } },
+    sorts: [{ property: "Order", direction: "ascending" }],
   });
 
   const results = database.results as unknown as NavigationDatabaseResult;

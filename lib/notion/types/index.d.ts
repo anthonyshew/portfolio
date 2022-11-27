@@ -1,4 +1,4 @@
-import { PageObjectResponse, MultiSelectPropertyItemObjectResponse, StatusPropertyItemObjectResponse, TextRichTextItemResponse, DatePropertyItemObjectResponse } from "@notionhq/client/build/src/api-endpoints"
+import { PageObjectResponse, MultiSelectPropertyItemObjectResponse, StatusPropertyItemObjectResponse, TextRichTextItemResponse, DatePropertyItemObjectResponse, NumberPropertyItemObjectResponse } from "@notionhq/client/build/src/api-endpoints"
 
 export interface NavProperties {
   Status: StatusPropertyItemObjectResponse & {
@@ -7,6 +7,7 @@ export interface NavProperties {
   Placement: MultiSelectPropertyItemObjectResponse,
   Slug: { rich_text: TextRichTextItemResponse[] },
   Title: { title: TextRichTextItemResponse[0] }
+  Order: NumberPropertyItemObjectResponse
 }
 
 export type NavigationDatabaseResult = Array<
