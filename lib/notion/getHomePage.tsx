@@ -1,9 +1,5 @@
 import { notion } from "./client";
-import {
-  GetPagePropertyResponse,
-  PageObjectResponse,
-  RichTextItemResponse,
-} from "@notionhq/client/build/src/api-endpoints";
+import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 
 export const getHomePage = async () => {
   const [pageMeta, blocks] = await Promise.all([
