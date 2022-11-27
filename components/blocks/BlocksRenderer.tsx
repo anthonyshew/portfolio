@@ -24,20 +24,32 @@ export const BlocksRenderer = ({ blocks }: Props) => {
   >((acc, value) => {
     if (!isFullBlock(value)) return acc;
 
-    if (!acc.length && value.type === "bulleted_list_item") {
-      acc.push([value]);
-      return acc;
-    }
-
     if (!acc.length) {
-      acc.push(value);
-      return acc;
+      if (
+        value.type === "bulleted_list_item" ||
+        value.type === "numbered_list_item"
+      ) {
+        acc.push([value]);
+        return acc;
+      } else {
+        acc.push(value);
+        return acc;
+      }
     }
 
     if (
       acc[acc.length - 1][0] &&
       acc[acc.length - 1][0].type === "bulleted_list_item" &&
       value.type === "bulleted_list_item"
+    ) {
+      (acc[acc.length - 1] as BlockObjectResponse[]).push(value);
+      return acc;
+    }
+
+    if (
+      acc[acc.length - 1][0] &&
+      acc[acc.length - 1][0].type === "numbered_list_item" &&
+      value.type === "numbered_list_item"
     ) {
       (acc[acc.length - 1] as BlockObjectResponse[]).push(value);
       return acc;
