@@ -11,7 +11,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const { pageTitle } = await getHomePage();
-  const { desktop } = await getNavigation();
+  const { desktop, footer, mobile } = await getNavigation();
 
   return (
     <html>
@@ -19,8 +19,8 @@ export default async function RootLayout({
         <title>{pageTitle}</title>
       </head>
       <body>
-        <Navbar />
-        <main className="pt-16 md:pt-20">{children}</main>
+        <Navbar mobileLinks={mobile} desktopLinks={desktop} />
+        <main className="pt-24 md:pt-20 min-h-screen">{children}</main>
       </body>
     </html>
   );

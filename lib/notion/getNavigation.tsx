@@ -1,18 +1,8 @@
-import {
-  PageObjectResponse,
-  QueryDatabaseResponse,
-} from "@notionhq/client/build/src/api-endpoints";
-import { NavProperties } from "@/lib/notion/types";
+import { NavigationDatabaseResult } from "@/lib/notion/types";
 import { notion } from "./client";
 
-type DatabaseResult = Array<
-  PageObjectResponse & {
-    properties: NavProperties;
-  }
->;
-
 const handlePlacement = (
-  results: DatabaseResult,
+  results: NavigationDatabaseResult,
   placement: "Desktop" | "Mobile" | "Footer"
 ) => {
   return results.filter(
@@ -26,11 +16,11 @@ const handlePlacement = (
 
 export const getNavigation = async () => {
   const database = await notion.databases.query({
-    database_id: process.env.NAV_DB_ID,
+    database_id: process.env.NEXT_PUBLIC_NAV_DB_ID,
     sorts: [{ property: "Slug", direction: "ascending" }],
   });
 
-  const results = database.results as unknown as DatabaseResult;
+  const results = database.results as unknown as NavigationDatabaseResult;
 
   return {
     footer: handlePlacement(results, "Footer"),
