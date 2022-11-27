@@ -14,7 +14,7 @@ export const Toggle = async ({ block_id, summary }: Props) => {
   });
 
   return (
-    <details className="p-4 rounded bg-slate-400">
+    <details className="p-4 rounded bg-gray-400">
       <summary>
         <RichText rich_text={summary} />
       </summary>

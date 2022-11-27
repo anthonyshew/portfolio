@@ -68,7 +68,7 @@ export const BlocksRenderer = ({ blocks }: Props) => {
   }, []);
 
   return (
-    <article className="container px-4 mx-auto my-8 prose">
+    <article className="container px-4 py-8 mx-auto mt-8 prose dark:prose-invert">
       {blocksArr.map((block) => {
         if (Array.isArray(block)) {
           return block[0].type === "bulleted_list_item" ? (

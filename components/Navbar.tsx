@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { NavigationDatabaseResult } from "@/lib/notion/types";
 import { DarkModeButton } from "@/components/DarkModeButton";
+import { Shoe } from "@/components/Shoe";
 
 interface Props {
   headerLinks: NavigationDatabaseResult;
@@ -12,12 +13,16 @@ export const Navbar = ({ headerLinks }: Props) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
-    <nav className="fixed z-50 w-full px-4 py-2 bg-white dark:bg-black bg-opacity-20 backdrop-blur-lg rounded">
+    <nav className="fixed z-50 w-full px-4  bg-white dark:bg-black bg-opacity-20 backdrop-blur-lg rounded">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
+        {/* <DarkModeButton /> */}
+        <a href="/" className="block w-16 h-16 text-black dark:text-gray-300">
+          <Shoe />
+        </a>
         <button
           data-collapse-toggle="navbar-dropdown"
           type="button"
-          className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 ml-3 text-sm text-black dark:text-gray-300 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           aria-controls="navbar-dropdown"
           aria-expanded="false"
           onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -48,15 +53,15 @@ export const Navbar = ({ headerLinks }: Props) => {
             } w-full absolute left-0 top-18 md:relative md:block md:top-0 md:w-auto`}
             id="navbar-dropdown"
           >
-            <ul className="flex flex-col px-4 mt-4 mx-2 border-gray-100 rounded-b-xl md:rounded-br-none md:rounded-bl-none md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0   dark:border-gray-700">
+            <ul className="flex flex-col p-2 mx-2 mt-2 bg-white dark:bg-black border border-gray-400 drop-shadow-lg rounded-b-xl md:rounded-br-none md:rounded-bl-none md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 dark:border-gray-700">
               {headerLinks.map((link) => {
                 return (
                   <li
                     key={link.id}
-                    className="block py-2 pl-3 pr-4 rounded md:hover:bg-transparent md:border-0 md:hover:text-gray-700 md:p-0 dark:text-gray-400 dark:hover:text-white md:dark:hover:bg-transparent"
+                    className="block text-right pl-3 pr-4 rounded hover:bg-gray-300 md:border-0 md:hover:bg-black md:hover:text-white md:p-0 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 md:dark:hover:bg-transparent"
                   >
                     <a
-                      className="block w-full py-2"
+                      className="block w-full py-4 md:px-2"
                       href={link.properties.Slug.rich_text
                         .map((el) => el.plain_text)
                         .join()}
@@ -69,7 +74,6 @@ export const Navbar = ({ headerLinks }: Props) => {
             </ul>
           </div>
         </div>
-        <DarkModeButton />
       </div>
     </nav>
   );
