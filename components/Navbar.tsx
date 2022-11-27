@@ -5,24 +5,26 @@ import Image from "next/image";
 import { NavigationDatabaseResult } from "@/lib/notion/types";
 
 interface Props {
-  desktopLinks: NavigationDatabaseResult;
-  mobileLinks: NavigationDatabaseResult;
+  headerLinks: NavigationDatabaseResult;
 }
 
-export const Navbar = ({ desktopLinks, mobileLinks }: Props) => {
+export const Navbar = ({ headerLinks }: Props) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
     <nav className="fixed w-full p-4 bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
-        <a href="/" className="w-16 h-16 relative flex items-center">
-          <Image
-            src="https://avatars.githubusercontent.com/u/35677084?v=4"
-            className="mr-3 rounded-full"
-            alt="Anthony Shew"
-            sizes="64px"
-            fill
-          />
+        <a href="/" className="h-16 relative flex items-center gap-4">
+          <span className="block relative w-16 h-16">
+            <Image
+              src="https://avatars.githubusercontent.com/u/35677084?v=4"
+              className="rounded-full"
+              alt="Anthony Shew"
+              sizes="64px"
+              fill
+            />
+          </span>
+          <p className="text-white">Anthony Shew</p>
         </a>
         <button
           data-collapse-toggle="navbar-dropdown"
@@ -59,7 +61,7 @@ export const Navbar = ({ desktopLinks, mobileLinks }: Props) => {
             id="navbar-dropdown"
           >
             <ul className="flex flex-col p-4 mt-4 mx-2 border-gray-100 rounded-b-xl md:rounded-br-none md:rounded-bl-none bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              {mobileLinks.map((link) => {
+              {headerLinks.map((link) => {
                 return (
                   <li
                     key={link.id}

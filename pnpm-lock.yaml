@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@next/font': ^13.0.5
   '@notionhq/client': ^2.2.2
   '@tailwindcss/forms': ^0.5.3
   '@tailwindcss/typography': ^0.5.8
@@ -18,6 +19,7 @@ specifiers:
   typescript: 4.9.3
 
 dependencies:
+  '@next/font': 13.0.5
   '@notionhq/client': 2.2.2_encoding@0.1.13
   autoprefixer: 10.4.13_postcss@8.4.19
   class-variance-authority: 0.3.0_typescript@4.9.3
@@ -40,6 +42,10 @@ packages:
 
   /@next/env/13.0.5:
     resolution: {integrity: sha512-F3KLtiDrUslAZhTYTh8Zk5ZaavbYwLUn3NYPBnOjAXU8hWm0QVGVzKIOuURQ098ofRU4e9oglf3Sj9pFx5nI5w==}
+    dev: false
+
+  /@next/font/13.0.5:
+    resolution: {integrity: sha512-NrP4B8pxwerrkkuG/m7MQv0ks89Kk4Lc0kzbiRaYX+Xb0coDaw+I9T+g42aOHf8j8ta1vtKqb5XE1+troZ4CoQ==}
     dev: false
 
   /@next/swc-android-arm-eabi/13.0.5:

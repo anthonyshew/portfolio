@@ -23,8 +23,7 @@ export const getNavigation = async () => {
   const results = database.results as unknown as NavigationDatabaseResult;
 
   return {
+    header: handlePlacement(results, "Header"),
     footer: handlePlacement(results, "Footer"),
-    desktop: handlePlacement(results, "Desktop"),
-    mobile: handlePlacement(results, "Mobile"),
   };
 };
