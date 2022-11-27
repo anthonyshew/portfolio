@@ -3,7 +3,7 @@ import { notion } from "./client";
 
 const handlePlacement = (
   results: NavigationDatabaseResult,
-  placement: "Desktop" | "Mobile" | "Footer"
+  placement: "Header" | "Footer"
 ) => {
   return results.filter(
     (page) =>

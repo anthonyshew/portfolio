@@ -29,6 +29,11 @@ export const BlocksRenderer = ({ blocks }: Props) => {
       return acc;
     }
 
+    if (!acc.length) {
+      acc.push(value);
+      return acc;
+    }
+
     if (
       acc[acc.length - 1][0] &&
       acc[acc.length - 1][0].type === "bulleted_list_item" &&
