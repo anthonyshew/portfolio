@@ -41,8 +41,9 @@ export interface LandingsProperties {
     name: "Not started" | "In progress" | "Ready to post" | "Done"
   }
   Placement: MultiSelectPropertyItemObjectResponse
-  Title: { title: TextRichTextItemResponse[0] }
+  Title: { title: TextRichTextItemResponse[] }
   Slug: { rich_text: TextRichTextItemResponse[] }
+  OgDesc: { rich_text: TextRichTextItemResponse[] }
 }
 
 export type LandingsDatabaseResult = Array<
